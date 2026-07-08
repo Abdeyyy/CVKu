@@ -36,15 +36,15 @@
   }
 
   ::selection {
-    background: rgba(59,130,246,0.3);
-    color: #fff;
+    background: rgba(59,130,246,0.2);
+    color: inherit;
   }
 
   /* Scrollbar */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { @apply bg-surface-600 rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-surface-500; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-500 rounded-full cursor-pointer; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-zinc-500; }
 }
 
 /* ── Component Utilities ────────────────────────────────────── */
@@ -94,28 +94,28 @@
 
   /* Card surface */
   .card {
-    @apply bg-surface-800 border border-surface-600 rounded-2xl;
+    @apply bg-surface-800 border border-surface-600 rounded-2xl shadow-sm;
   }
 
   /* Section card (lighter) */
   .card-inner {
-    @apply bg-surface-900 border border-surface-700 rounded-xl;
+    @apply bg-surface-700 border border-surface-600 rounded-xl;
   }
 
   /* Tag / badge */
   .badge {
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full
-           text-xs font-medium bg-accent/10 text-accent-300 border border-accent/20;
+           text-xs font-medium bg-accent/10 text-accent-700 border border-accent/20;
   }
 
   /* Divider */
   .divider {
-    @apply border-t border-surface-700;
+    @apply border-t border-surface-600;
   }
 
   /* Glass effect (web approximation, not Apple Liquid Glass) */
   .glass {
-    @apply bg-surface-800/70 backdrop-blur-md border border-white/5;
+    @apply bg-white/70 backdrop-blur-md border-b border-surface-600/50;
   }
 
   /* Skeleton placeholder */
