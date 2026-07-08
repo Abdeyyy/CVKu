@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables / Design Tokens ─────────────────────────── */
+:root {
+  --accent: #3B82F6;
+  --accent-glow: rgba(59,130,246,0.18);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --nav-height: 64px;
+}
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-950 text-zinc-100 font-body;
+    line-height: 1.6;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold tracking-tight;
+  }
+
+  ::selection {
+    background: rgba(59,130,246,0.3);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-600 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-surface-500; }
+}
+
+/* ── Component Utilities ────────────────────────────────────── */
+@layer components {
+
+  /* Input base */
+  .input-base {
+    @apply w-full bg-surface-800 border border-surface-600 rounded-xl px-4 py-2.5
+           text-sm text-zinc-100 placeholder-zinc-500
+           focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30
+           transition-all duration-200;
+  }
+
+  /* Label base */
+  .label-base {
+    @apply block text-xs font-medium text-zinc-400 mb-1.5;
+  }
+
+  /* Error text */
+  .error-text {
+    @apply mt-1 text-xs text-red-400;
+  }
+
+  /* Button primary */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-accent text-white
+           px-5 py-2.5 rounded-xl text-sm font-medium
+           hover:bg-accent-600 active:scale-[0.98] active:-translate-y-px
+           transition-all duration-150 cursor-pointer;
+  }
+
+  /* Button ghost */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-zinc-400
+           px-5 py-2.5 rounded-xl text-sm font-medium border border-surface-600
+           hover:border-surface-500 hover:text-zinc-200 active:scale-[0.98]
+           transition-all duration-150 cursor-pointer;
+  }
+
+  /* Button danger */
+  .btn-danger {
+    @apply inline-flex items-center gap-2 text-red-400
+           px-3 py-2 rounded-lg text-sm font-medium
+           hover:bg-red-500/10 active:scale-[0.98]
+           transition-all duration-150 cursor-pointer;
+  }
+
+  /* Card surface */
+  .card {
+    @apply bg-surface-800 border border-surface-600 rounded-2xl;
+  }
+
+  /* Section card (lighter) */
+  .card-inner {
+    @apply bg-surface-900 border border-surface-700 rounded-xl;
+  }
+
+  /* Tag / badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full
+           text-xs font-medium bg-accent/10 text-accent-300 border border-accent/20;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-surface-700;
+  }
+
+  /* Glass effect (web approximation, not Apple Liquid Glass) */
+  .glass {
+    @apply bg-surface-800/70 backdrop-blur-md border border-white/5;
+  }
+
+  /* Skeleton placeholder */
+  .skeleton {
+    @apply bg-surface-700 rounded-lg animate-pulse;
+  }
+}
+
+/* ── Z-Index Scale ──────────────────────────────────────────── */
+/*
+  z-10  : sticky elements (step indicator)
+  z-20  : nav bar
+  z-30  : modals / overlays
+  z-40  : tooltips
+  z-50  : toasts / notifications
+*/
+
+/* ── Drag preview ───────────────────────────────────────────── */
+.dragging {
+  opacity: 0.5;
+}
+
+/* ── CV Preview print area ──────────────────────────────────── */
+.cv-preview-wrapper {
+  transform-origin: top left;
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

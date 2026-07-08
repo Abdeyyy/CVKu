@@ -1,0 +1,157 @@
+import { useNavigate } from 'react-router-dom'
+import Navbar from '../components/layout/Navbar'
+import useCVStore from '../store/cvStore'
+
+const TEMPLATES = [
+  {
+    id: 'ats',
+    name: 'ATS Friendly',
+    desc: 'Format teks murni, tanpa grafis. Dijamin lolos sistem screening ATS (Applicant Tracking System).',
+    color: '#34d399' // emerald-400
+  },
+  {
+    id: 'kronologis',
+    name: 'Kronologis',
+    desc: 'Menonjolkan riwayat pekerjaan terbaru. Layout dua kolom dengan sidebar yang rapi.',
+    color: '#60a5fa' // blue-400
+  },
+  {
+    id: 'fungsional',
+    name: 'Fungsional',
+    desc: 'Fokus pada skill dan kompetensi utama. Cocok untuk fresh graduate dan career switcher.',
+    color: '#a78bfa' // violet-400
+  },
+  {
+    id: 'kombinasi',
+    name: 'Kombinasi Modern',
+    desc: 'Gabungan skill summary dan riwayat kronologis dalam desain modern satu kolom lebar.',
+    color: '#f472b6' // pink-400
+  },
+  {
+    id: 'kreatif',
+    name: 'Kreatif Visual',
+    desc: 'Desain bold dengan hierarki visual kuat. Ideal untuk desainer, ilustrator, atau posisi kreatif.',
+    color: '#fbbf24' // amber-400
+  }
+]
+
+export default function TemplatePage() {
+  const navigate = useNavigate()
+  const { startNewCV, setTemplate } = useCVStore()
+
+  const handleUseTemplate = (id) => {
+    startNewCV()
+    setTemplate(id)
+    navigate('/form')
+  }
+
+  return (
+    <div className="min-h-screen bg-surface-950 pt-[var(--nav-height)]">
+      <Navbar />
+
+      <main className="max-w-6xl mx-auto px-6 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-3xl md:text-5xl font-bold text-zinc-100 tracking-tight">
+            Pilih Template CV Anda
+          </h1>
+          <p className="text-lg text-zinc-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+            Satu kali isi data, generator kami bisa membuat semua variasi ini.
+            Pilih satu untuk memulai, Anda bisa menggantinya kapan saja nanti.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {TEMPLATES.map((tpl) => (
+            <div key={tpl.id} className="card flex flex-col overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+              {/* Dummy preview area */}
+              <div
+                className="h-48 relative border-b border-surface-600/50"
+                style={{ backgroundColor: `${tpl.color}10` }}
+              >
+                {/* Simulated mini CV layout based on type */}
+                <div className="absolute inset-4 bg-white rounded shadow-sm opacity-90 p-3 overflow-hidden pointer-events-none">
+                  {tpl.id === 'ats' && (
+                    <div className="space-y-2 opacity-50">
+                      <div className="h-2 bg-black w-1/3 mx-auto" />
+                      <div className="h-1 bg-gray-500 w-1/2 mx-auto" />
+                      <div className="h-px bg-black w-full my-2" />
+                      <div className="h-1.5 bg-gray-800 w-1/4" />
+                      <div className="space-y-1 mt-1">
+                        <div className="h-1 bg-gray-400 w-full" />
+                        <div className="h-1 bg-gray-400 w-5/6" />
+                      </div>
+                    </div>
+                  )}
+                  {tpl.id === 'kronologis' && (
+                    <div className="flex gap-2 h-full opacity-50">
+                      <div className="w-1/3 bg-gray-100 h-full p-1 space-y-1">
+                        <div className="w-4 h-4 rounded-full bg-gray-300 mx-auto" />
+                        <div className="h-1 bg-gray-400 w-full" />
+                        <div className="h-1 bg-gray-400 w-3/4" />
+                      </div>
+                      <div className="w-2/3 space-y-1 mt-2">
+                        <div className="h-1.5 bg-gray-800 w-1/2" />
+                        <div className="h-1 bg-gray-400 w-full mt-2" />
+                      </div>
+                    </div>
+                  )}
+                  {tpl.id === 'fungsional' && (
+                    <div className="space-y-2 h-full opacity-50">
+                      <div className="h-4 w-full" style={{ backgroundColor: tpl.color }} />
+                      <div className="flex gap-2">
+                        <div className="w-1/3 h-8 bg-gray-100" />
+                        <div className="w-1/3 h-8 bg-gray-100" />
+                        <div className="w-1/3 h-8 bg-gray-100" />
+                      </div>
+                    </div>
+                  )}
+                  {tpl.id === 'kombinasi' && (
+                    <div className="space-y-2 h-full opacity-50 flex flex-col">
+                      <div className="h-6 w-full border-b-2" style={{ borderColor: tpl.color }} />
+                      <div className="flex gap-2 flex-1 pt-1">
+                        <div className="w-2/3 h-full space-y-1">
+                           <div className="h-1.5 bg-gray-800 w-1/3" />
+                           <div className="h-1 bg-gray-400 w-full" />
+                        </div>
+                        <div className="w-1/3 h-full bg-gray-50" />
+                      </div>
+                    </div>
+                  )}
+                  {tpl.id === 'kreatif' && (
+                    <div className="flex h-full opacity-70">
+                       <div className="w-1/3 h-full" style={{ backgroundColor: tpl.color }}>
+                          <div className="w-6 h-6 rounded-full bg-white/30 mx-auto mt-2" />
+                       </div>
+                       <div className="w-2/3 p-2 space-y-1">
+                          <div className="h-2 bg-gray-800 w-1/2" />
+                          <div className="h-1 bg-gray-400 w-full" />
+                       </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: tpl.color }} />
+                  <h3 className="text-xl font-bold text-zinc-100">{tpl.name}</h3>
+                </div>
+                <p className="text-sm text-zinc-400 leading-relaxed flex-1">
+                  {tpl.desc}
+                </p>
+                <div className="mt-6 pt-4 border-t border-surface-700">
+                  <button 
+                    onClick={() => handleUseTemplate(tpl.id)}
+                    className="btn-ghost w-full justify-center group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all duration-300"
+                  >
+                    Gunakan Template Ini
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  )
+}
