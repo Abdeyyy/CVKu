@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, FileText, Checks, Sparkle, DownloadSimple } from '@phosphor-icons/react'
+import { FaRobot, FaDownload, FaServer } from "react-icons/fa";
 import Navbar from '../components/layout/Navbar'
 import heroImg from '../assets/Example/hero.png'
+import { AiFillFormatPainter } from "react-icons/ai";
 
 function FeatureCard({ icon: Icon, title, desc }) {
   return (
@@ -83,27 +84,22 @@ export default function LandingPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <FeatureCard
-            icon={FileText}
-            title="Single Source of Truth"
-            desc="Isi master data Anda satu kali. Pindah dari template ATS ke desain kreatif tanpa perlu mengetik ulang apapun."
-          />
-          <FeatureCard
-            icon={Checks}
+            icon={FaRobot}
             title="ATS Optimized"
-            desc="Satu template khusus dibuat mengikuti standar parsing ATS, memastikan CV Anda terbaca sempurna oleh robot rekrutmen."
+            desc="Template dibuat mengikuti standar parsing ATS, memastikan CV Anda terbaca sempurna oleh robot rekrutmen."
           />
           <FeatureCard
-            icon={Sparkle}
-            title="Desain Kualitas Agency"
-            desc="Template kami dibuat dengan prinsip desain profesional. Tipografi, hierarki visual, dan spacing yang matang."
+            icon={AiFillFormatPainter}
+            title="Kualitas Desain Tinggi"
+            desc="Template dibuat dengan prinsip desain profesional, meliputi tipografi, hierarki visual, dan spacing yang sempurna."
           />
           <FeatureCard
-            icon={DownloadSimple}
+            icon={FaDownload}
             title="Export Instan"
-            desc="Export ke PDF berkualitas tinggi atau gambar raster (PNG) dalam satu klik. Langsung dari browser Anda."
+            desc="Export ke PDF atau PNG dalam satu klik langsung dari browser."
           />
           <FeatureCard
-            icon={ArrowRight} /* Placeholder icon for local storage saving */
+            icon={FaServer} 
             title="Auto-Save Lokal"
             desc="Semua data tersimpan otomatis di browser secara lokal. Privasi terjaga, tidak ada data CV yang dikirim ke server."
           />
